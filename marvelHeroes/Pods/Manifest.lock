@@ -1,0 +1,22 @@
+PODS:
+  - lottie-ios (3.1.9)
+  - NVActivityIndicatorView (5.1.1):
+    - NVActivityIndicatorView/Base (= 5.1.1)
+  - NVActivityIndicatorView/Base (5.1.1)
+
+DEPENDENCIES:
+  - lottie-ios
+  - NVActivityIndicatorView
+
+SPEC REPOS:
+  trunk:
+    - lottie-ios
+    - NVActivityIndicatorView
+
+SPEC CHECKSUMS:
+  lottie-ios: 3a3758ef5a008e762faec9c9d50a39842f26d124
+  NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
+
+PODFILE CHECKSUM: 124dab51bc9af6702e4e242b3825a5babed15338
+
+COCOAPODS: 1.10.0
