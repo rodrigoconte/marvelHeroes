@@ -7,9 +7,10 @@
 //
 
 import Foundation
-struct SeriesModel: Codable {
-	let available : String?
-	let returned : String?
-	let collectionURI : String?
-	let items : [ItemsModel]?
+
+struct SeriesModel: Decodable {
+    let available: Int?
+    let collectionURI: String?
+    let items: [SeriesSummaryModel]?
+    let returned: Int?
 }

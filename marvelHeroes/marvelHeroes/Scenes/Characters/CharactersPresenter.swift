@@ -13,16 +13,38 @@
 import UIKit
 
 protocol CharactersPresentationLogic {
-    func presentSomething(response: Characters.GetCharacter.Response)
+    func presentCharacters(response: Characters.GetCharacters.Response)
+    func presentError(_ error: Characters.Error)
 }
 
 class CharactersPresenter: CharactersPresentationLogic {
+    
     weak var viewController: CharactersDisplayLogic?
     
-    // MARK: Do something
+    // MARK: Presentation Logic
     
-    func presentSomething(response: Characters.GetCharacter.Response) {
-        let viewModel = Characters.GetCharacter.ViewModel()
-        viewController?.displayCharacter(viewModel: viewModel)
+    func presentCharacters(response: Characters.GetCharacters.Response) {
+        let displayedCharacters = response.results.map { (character) -> Characters.DisplayedCharacter in
+            let name = character.name ?? "-"
+            let isFavorited = containsID(ofCharacter: character, on: response.favorites)
+            let displayedCharacter = Characters.DisplayedCharacter(name: name, isFavorited: isFavorited)
+            return displayedCharacter
+        }
+        
+        let viewModel = Characters.GetCharacters.ViewModel(displayedCharacters: displayedCharacters)
+        viewController?.displayCharacters(viewModel: viewModel)
+    }
+    
+    private func containsID(ofCharacter character: CharacterModel, on favorites: [FavoriteEntity]) -> Bool {
+        guard let characterId = character.id else { return false }
+        
+        let isFavorited = favorites.contains { (favorite) -> Bool in
+            return Int(favorite.id) == characterId
+        }
+        return isFavorited
+    }
+    
+    func presentError(_ error: Characters.Error) {
+        viewController?.displayError(error)
     }
 }

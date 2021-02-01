@@ -1,5 +1,5 @@
 //
-//  UrlsMoodel.swift
+//  StorySummaryModel.swift
 //  marvelHeroes
 //
 //  Created by Rodrigo Conte on 31/01/21.
@@ -7,7 +7,9 @@
 //
 
 import Foundation
-struct UrlsModel : Codable {
-	let type : String?
-	let url : String?
+
+struct StorySummaryModel: Decodable {
+    let resourceURI: String?
+    let name: String?
+    let type: String?
 }

@@ -12,19 +12,28 @@
 
 import UIKit
 
-@objc protocol CharactersRoutingLogic
-{
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
+@objc protocol CharactersRoutingLogic {
+    func routeToDetail()
 }
 
-protocol CharactersDataPassing
-{
-  var dataStore: CharactersDataStore? { get }
+protocol CharactersDataPassing {
+    var dataStore: CharactersDataStore? { get }
 }
 
-class CharactersRouter: NSObject, CharactersRoutingLogic, CharactersDataPassing
-{
-  weak var viewController: CharactersViewController?
-  var dataStore: CharactersDataStore?
-  
+class CharactersRouter: NSObject, CharactersRoutingLogic, CharactersDataPassing {
+    
+    weak var viewController: CharactersViewController?
+    var dataStore: CharactersDataStore?
+    
+    // MARK: Routing
+    
+    func routeToDetail() {
+//        let destinationVC = DetailFactory.makeController()
+//        guard var destinationDS = destinationVC.router?.dataStore else { return }
+//        guard let indexPath = viewController?.tableView.indexPathForSelectedRow else { return }
+//        destinationDS.character = dataStore?.charactersBeingDisplayed[indexPath.row]
+//        
+//        viewController?.navigationController?.pushViewController(destinationVC, animated: true)
+    }
+    
 }

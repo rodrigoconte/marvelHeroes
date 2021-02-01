@@ -7,9 +7,10 @@
 //
 
 import Foundation
-struct ComicsModel: Codable {
-	let available : String?
-	let returned : String?
-	let collectionURI : String?
-	let items : [ItemsModel]?
+
+struct ComicsModel: Decodable {
+    let available: Int?
+    let collectionURI: String?
+    let items: [ComicSummaryModel]?
+    let returned: Int?
 }

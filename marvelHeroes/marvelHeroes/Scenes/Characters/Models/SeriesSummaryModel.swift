@@ -1,5 +1,5 @@
 //
-//  ItemsModel.swift
+//  SeriesSummaryModel.swift
 //  marvelHeroes
 //
 //  Created by Rodrigo Conte on 31/01/21.
@@ -7,7 +7,8 @@
 //
 
 import Foundation
-struct ItemsModel: Codable {
-	let resourceURI : String?
-	let name : String?
+
+struct SeriesSummaryModel: Decodable {
+    let resourceURI: String?
+    let name: String?
 }

@@ -7,9 +7,10 @@
 //
 
 import Foundation
-struct EventsModel: Codable {
-	let available : String?
-	let returned : String?
-	let collectionURI : String?
-	let items : [ItemsModel]?
+
+struct EventsModel: Decodable {
+    let available: Int?
+    let collectionURI: String?
+    let items: [EventSummaryModel]?
+    let returned: Int?
 }

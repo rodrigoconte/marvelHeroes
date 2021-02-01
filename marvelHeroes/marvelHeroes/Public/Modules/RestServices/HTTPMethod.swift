@@ -1,5 +1,5 @@
 //
-//  UrlsMoodel.swift
+//  HTTPMethod.swift
 //  marvelHeroes
 //
 //  Created by Rodrigo Conte on 31/01/21.
@@ -7,7 +7,10 @@
 //
 
 import Foundation
-struct UrlsModel : Codable {
-	let type : String?
-	let url : String?
+
+enum HTTPMethod: String {
+    case get
+    case post
+    case put
+    case delete
 }

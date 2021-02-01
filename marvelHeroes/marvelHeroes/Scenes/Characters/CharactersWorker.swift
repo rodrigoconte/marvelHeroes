@@ -11,8 +11,55 @@
 //
 
 import UIKit
+import CoreData
+
+protocol CharactersWorkerManager {
+    func getCharacters(completion: @escaping (Result<CharacterDataWrapperModel, Error>) -> Void)
+}
 
 class CharactersWorker {
-  func doSomeWork() {
-  }
+    
+    let manager: CharactersWorkerManager
+    
+    var context: NSManagedObjectContext {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        return appDelegate.persistentContainer.viewContext
+    }
+    
+    init(manager: CharactersWorkerManager) {
+        self.manager = manager
+    }
+
+    func getCharacters(completion: @escaping (Result<CharacterDataWrapperModel, Error>) -> Void ) {
+        manager.getCharacters(completion: completion)
+    }
+    
+    func saveCharacterOnFavorite(name: String, id: Int, completion: (Error?) -> Void) {
+        let object = FavoriteEntity(context: context)
+        object.name = name
+        object.id = Int32(id)
+        
+        FavoriteDAO().save(object: object, completion: completion)
+    }
+    
+    func removeCharacterFromFavorite(id: Int, completion: (Error?) -> Void) {
+        let entityName = String(describing: FavoriteEntity.self)
+        FavoriteDAO().get(entityName: entityName, withId: id) { (result) in
+            switch result {
+            case .success(let favorites):
+                for favorite in favorites {
+                    FavoriteDAO().delete(object: favorite, completion: nil)
+                }
+                completion(nil)
+            case .failure:
+                completion(NSError())
+            }
+        }
+    }
+    
+    func getFavoriteCharacters(completion: (Result<[FavoriteEntity], Error>) -> Void) {
+        let entityName = String(describing: FavoriteEntity.self)
+        FavoriteDAO().getAll(entityName: entityName, completion: completion)
+    }
+    
 }

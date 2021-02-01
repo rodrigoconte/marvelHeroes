@@ -12,16 +12,61 @@
 
 import UIKit
 
-enum Characters
-{
-  // MARK: Use cases
-  
-  enum GetCharacter {
-    struct Request {
+enum Characters {
+    
+    // MARK: Use cases
+    
+    enum GetCharacters {
+        struct Response {
+            let results: [CharacterModel]
+            let favorites: [FavoriteEntity]
+        }
+        struct ViewModel {
+            var displayedCharacters: [DisplayedCharacter]
+        }
     }
-    struct Response {
+    
+    enum SearchCharacters {
+        struct Request {
+            let searchText: String
+        }
     }
-    struct ViewModel {
+    
+    enum SaveInFavorite {
+        struct Request {
+            let indexPath: IndexPath
+        }
     }
-  }
+    
+    enum RemoveFromFavorite {
+        struct Request {
+            let indexPath: IndexPath
+        }
+    }
+    
+    struct DisplayedCharacter {
+        let name: String
+        let isFavorited: Bool
+    }
+    
+    enum Error {
+        case emptyList
+        case unexpectedError
+        case database
+        case notConnectedToInternet
+        
+        var message: String {
+            switch self {
+            case .emptyList:
+                return "Nenhum personagem encontrado"
+            case .unexpectedError:
+                return ErrorConstants.unexpectedError
+            case .database:
+                return ErrorConstants.database
+            case .notConnectedToInternet:
+                return ErrorConstants.notConnectedToInternet
+            }
+        }
+    }
 }
+

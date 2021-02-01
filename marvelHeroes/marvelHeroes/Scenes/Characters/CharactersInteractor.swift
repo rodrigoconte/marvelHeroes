@@ -10,28 +10,142 @@
 //  see http://clean-swift.com
 //
 
-import UIKit
+import Foundation
 
 protocol CharactersBusinessLogic {
-  func doSomething(request: Characters.GetCharacter.Request)
+    func requestCharacters()
+    func getUpdatedFavorites()
+    func updateIsSearching(isSearching: Bool)
+    func searchCharacters(request: Characters.SearchCharacters.Request)
+    func saveCharacterInFavorite(request: Characters.SaveInFavorite.Request)
+    func removeCharacterFromFavorite(request: Characters.RemoveFromFavorite.Request)
 }
 
 protocol CharactersDataStore {
-  //var name: String { get set }
+    var charactersBeingDisplayed: [CharacterModel] { get }
 }
 
-class CharactersInteractor: CharactersBusinessLogic, CharactersDataStore {
-  var presenter: CharactersPresentationLogic?
-  var worker: CharactersWorker?
-  //var name: String = ""
-  
-  // MARK: Do something
-  
-  func doSomething(request: Characters.GetCharacter.Request) {
-    worker = CharactersWorker()
-    worker?.doSomeWork()
+class CharactersInteractor: CharactersDataStore {
     
-    let response = Characters.GetCharacter.Response()
-    presenter?.presentSomething(response: response)
-  }
+    var presenter: CharactersPresentationLogic?
+    var worker = CharactersWorker(manager: CharactersNetworkManager())
+    
+    
+    // MARK: Variables
+    
+    var favorites: [FavoriteEntity] = []
+    var allCharacters: [CharacterModel] = []
+    var searchedCharacters: [CharacterModel] = []
+    var isSearching: Bool = false
+    
+    // MARK: Data Store
+    
+    var charactersBeingDisplayed: [CharacterModel] {
+        if isSearching {
+            return searchedCharacters
+        } else {
+            return allCharacters
+        }
+    }
+    
+    // MARK: Private Functions
+    
+    private func searchCharacters(_ characters: [CharacterModel], with text: String) -> [CharacterModel] {
+        let options: String.CompareOptions = [.caseInsensitive, .diacriticInsensitive]
+        let searchedCharacters = characters.filter { (character) -> Bool in
+            return character.name?.range(of: text, options: options) != nil
+        }
+        return searchedCharacters
+    }
+    
+    private func successRequestCharacters(characterDataWrapper: CharacterDataWrapperModel) {
+        guard let results = characterDataWrapper.data?.results, !results.isEmpty else {
+            presenter?.presentError(.emptyList)
+            return
+        }
+        allCharacters = results
+        getFavorites()
+        let response = Characters.GetCharacters.Response(results: results, favorites: favorites)
+        self.presenter?.presentCharacters(response: response)
+    }
+    
+    private func failureRequestCharacters(error: Error) {
+        let nsError = error as NSError
+        if nsError.code  == NSURLErrorNotConnectedToInternet {
+            presenter?.presentError(.notConnectedToInternet)
+        } else {
+            presenter?.presentError(.unexpectedError)
+        }
+    }
+    
+    private func getFavorites() {
+        worker.getFavoriteCharacters { [weak self] (result) in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let favorites):
+                self.favorites = favorites
+            case .failure:
+                self.presenter?.presentError(.database)
+            }
+        }
+    }
+}
+
+// MARK: Business Logic
+
+extension CharactersInteractor : CharactersBusinessLogic {
+    func requestCharacters() {
+        worker.getCharacters(completion: { [weak self] (result) in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let characterDataWrapper):
+                self.successRequestCharacters(characterDataWrapper: characterDataWrapper)
+            case .failure(let error):
+                self.failureRequestCharacters(error: error)
+            }
+        })
+    }
+    
+    func searchCharacters(request: Characters.SearchCharacters.Request) {
+        searchedCharacters = searchCharacters(allCharacters, with: request.searchText)
+        if searchedCharacters.isEmpty {
+            presenter?.presentError(.emptyList)
+        }
+        let response = Characters.GetCharacters.Response(results: charactersBeingDisplayed, favorites: favorites)
+        presenter?.presentCharacters(response: response)
+    }
+    
+    func getUpdatedFavorites() {
+        getFavorites()
+        let response = Characters.GetCharacters.Response(results: charactersBeingDisplayed, favorites: favorites)
+        presenter?.presentCharacters(response: response)
+    }
+    
+    func saveCharacterInFavorite(request: Characters.SaveInFavorite.Request) {
+        let charactedSelected = charactersBeingDisplayed[request.indexPath.row]
+        guard let name = charactedSelected.name, let id = charactedSelected.id else { return }
+        
+        worker.saveCharacterOnFavorite(name: name, id: id) { (error) in
+            if error != nil {
+                presenter?.presentError(.database)
+            }
+        }
+    }
+    
+    func removeCharacterFromFavorite(request: Characters.RemoveFromFavorite.Request) {
+        let charactedSelected = charactersBeingDisplayed[request.indexPath.row]
+        guard let id = charactedSelected.id else { return }
+        
+        worker.removeCharacterFromFavorite(id: id) { (error) in
+            if error != nil {
+                presenter?.presentError(.database)
+            }
+        }
+    }
+    
+    func updateIsSearching(isSearching: Bool) {
+        self.isSearching = isSearching
+    }
 }

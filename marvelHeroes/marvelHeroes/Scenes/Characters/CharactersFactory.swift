@@ -9,7 +9,7 @@
 import Foundation
 
 struct CharactersFactory {
-    private func setupController() -> CharactersViewController {
+    static func setupController() -> CharactersViewController {
         let viewController = CharactersViewController()
         let interactor = CharactersInteractor()
         let presenter = CharactersPresenter()
