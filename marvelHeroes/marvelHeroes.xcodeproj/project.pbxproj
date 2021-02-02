@@ -55,6 +55,14 @@
 		AAB648EB25C89FA10057DBB8 /* FavoritesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB648E525C89FA10057DBB8 /* FavoritesInteractor.swift */; };
 		AAB648EE25C89FAD0057DBB8 /* FavoritesFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB648ED25C89FAD0057DBB8 /* FavoritesFactory.swift */; };
 		AAB648F125C8A62A0057DBB8 /* deadpool.json in Resources */ = {isa = PBXBuildFile; fileRef = AAB648F025C8A62A0057DBB8 /* deadpool.json */; };
+		AAB648FE25C8EED40057DBB8 /* DetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB648F825C8EED40057DBB8 /* DetailsPresenter.swift */; };
+		AAB648FF25C8EED40057DBB8 /* DetailsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB648F925C8EED40057DBB8 /* DetailsWorker.swift */; };
+		AAB6490025C8EED40057DBB8 /* DetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB648FA25C8EED40057DBB8 /* DetailsRouter.swift */; };
+		AAB6490125C8EED40057DBB8 /* DetailsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB648FB25C8EED40057DBB8 /* DetailsModels.swift */; };
+		AAB6490225C8EED40057DBB8 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB648FC25C8EED40057DBB8 /* DetailsViewController.swift */; };
+		AAB6490325C8EED40057DBB8 /* DetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB648FD25C8EED40057DBB8 /* DetailsInteractor.swift */; };
+		AAB6490625C8EEF60057DBB8 /* DetailsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB6490525C8EEF60057DBB8 /* DetailsFactory.swift */; };
+		AAB6490925C8F1B20057DBB8 /* DetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAB6490825C8F1B20057DBB8 /* DetailsViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -108,6 +116,14 @@
 		AAB648E525C89FA10057DBB8 /* FavoritesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesInteractor.swift; sourceTree = "<group>"; };
 		AAB648ED25C89FAD0057DBB8 /* FavoritesFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesFactory.swift; sourceTree = "<group>"; };
 		AAB648F025C8A62A0057DBB8 /* deadpool.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = deadpool.json; sourceTree = "<group>"; };
+		AAB648F825C8EED40057DBB8 /* DetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsPresenter.swift; sourceTree = "<group>"; };
+		AAB648F925C8EED40057DBB8 /* DetailsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsWorker.swift; sourceTree = "<group>"; };
+		AAB648FA25C8EED40057DBB8 /* DetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsRouter.swift; sourceTree = "<group>"; };
+		AAB648FB25C8EED40057DBB8 /* DetailsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsModels.swift; sourceTree = "<group>"; };
+		AAB648FC25C8EED40057DBB8 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		AAB648FD25C8EED40057DBB8 /* DetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsInteractor.swift; sourceTree = "<group>"; };
+		AAB6490525C8EEF60057DBB8 /* DetailsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsFactory.swift; sourceTree = "<group>"; };
+		AAB6490825C8F1B20057DBB8 /* DetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsViewController.xib; sourceTree = "<group>"; };
 		D11530C0837979371A82C064 /* Pods-marvelHeroes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-marvelHeroes.release.xcconfig"; path = "Target Support Files/Pods-marvelHeroes/Pods-marvelHeroes.release.xcconfig"; sourceTree = "<group>"; };
 		E285BB90AEE2C965DF9B41A9 /* Pods-marvelHeroes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-marvelHeroes.debug.xcconfig"; path = "Target Support Files/Pods-marvelHeroes/Pods-marvelHeroes.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -174,6 +190,7 @@
 		AAB6482725C752300057DBB8 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				AAB648F725C8B7630057DBB8 /* Details */,
 				AAB648BD25C849C50057DBB8 /* MainTabbar */,
 				AAB6483C25C75BC70057DBB8 /* Characters */,
 				AAB648C925C89CC50057DBB8 /* Favorites */,
@@ -334,6 +351,21 @@
 			path = Favorites;
 			sourceTree = "<group>";
 		};
+		AAB648F725C8B7630057DBB8 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				AAB648F825C8EED40057DBB8 /* DetailsPresenter.swift */,
+				AAB648F925C8EED40057DBB8 /* DetailsWorker.swift */,
+				AAB648FA25C8EED40057DBB8 /* DetailsRouter.swift */,
+				AAB648FB25C8EED40057DBB8 /* DetailsModels.swift */,
+				AAB648FC25C8EED40057DBB8 /* DetailsViewController.swift */,
+				AAB648FD25C8EED40057DBB8 /* DetailsInteractor.swift */,
+				AAB6490525C8EEF60057DBB8 /* DetailsFactory.swift */,
+				AAB6490825C8F1B20057DBB8 /* DetailsViewController.xib */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -396,6 +428,7 @@
 				AAB648F125C8A62A0057DBB8 /* deadpool.json in Resources */,
 				AAB6481F25C74D850057DBB8 /* LaunchScreen.storyboard in Resources */,
 				AAB6481C25C74D850057DBB8 /* Assets.xcassets in Resources */,
+				AAB6490925C8F1B20057DBB8 /* DetailsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,23 +487,28 @@
 				AAB6489B25C7CC690057DBB8 /* MD5.swift in Sources */,
 				AAB6484425C75BE40057DBB8 /* CharactersWorker.swift in Sources */,
 				AAB6484325C75BE40057DBB8 /* CharactersPresenter.swift in Sources */,
+				AAB6490625C8EEF60057DBB8 /* DetailsFactory.swift in Sources */,
 				AAB6486125C781340057DBB8 /* EventsModel.swift in Sources */,
 				AAB648BB25C8360E0057DBB8 /* FavoriteContextualAction.swift in Sources */,
 				AAB6489F25C7CC890057DBB8 /* Timestamp.swift in Sources */,
 				AAB6485B25C781340057DBB8 /* SeriesSummaryModel.swift in Sources */,
 				AAB6486225C781340057DBB8 /* StoriesModel.swift in Sources */,
+				AAB6490225C8EED40057DBB8 /* DetailsViewController.swift in Sources */,
 				AAB6486025C781340057DBB8 /* UrlsModel.swift in Sources */,
 				AAB648BF25C849E40057DBB8 /* MainTabBarController.swift in Sources */,
 				AAB6481025C74D840057DBB8 /* AppDelegate.swift in Sources */,
 				AAB6484C25C75C500057DBB8 /* CharactersFactory.swift in Sources */,
 				AAB6489425C7C27E0057DBB8 /* CharacterDataWrapperModel.swift in Sources */,
 				AAB648EB25C89FA10057DBB8 /* FavoritesInteractor.swift in Sources */,
+				AAB648FE25C8EED40057DBB8 /* DetailsPresenter.swift in Sources */,
 				AAB648EA25C89FA10057DBB8 /* FavoritesViewController.swift in Sources */,
 				AAB6484825C75BE40057DBB8 /* CharactersInteractor.swift in Sources */,
 				AAB648AF25C7DA7A0057DBB8 /* LoadingView.swift in Sources */,
 				AAB6488E25C7AB7A0057DBB8 /* HTTPMethod.swift in Sources */,
 				AAB6485C25C781340057DBB8 /* CharacterModel.swift in Sources */,
 				AAB648E825C89FA10057DBB8 /* FavoritesRouter.swift in Sources */,
+				AAB6490325C8EED40057DBB8 /* DetailsInteractor.swift in Sources */,
+				AAB6490125C8EED40057DBB8 /* DetailsModels.swift in Sources */,
 				AAB6488825C7AB4C0057DBB8 /* RESTService.swift in Sources */,
 				AAB648EE25C89FAD0057DBB8 /* FavoritesFactory.swift in Sources */,
 				AAB6487A25C7A40C0057DBB8 /* CharactersAPI.swift in Sources */,
@@ -483,6 +521,7 @@
 				AAB6484625C75BE40057DBB8 /* CharactersModels.swift in Sources */,
 				AAB6488B25C7AB6B0057DBB8 /* RESTErrors.swift in Sources */,
 				AAB6484525C75BE40057DBB8 /* CharactersRouter.swift in Sources */,
+				AAB648FF25C8EED40057DBB8 /* DetailsWorker.swift in Sources */,
 				AAB6485F25C781340057DBB8 /* ThumbnailModel.swift in Sources */,
 				AAB648E925C89FA10057DBB8 /* FavoritesModels.swift in Sources */,
 				AAB6488425C7AB400057DBB8 /* RESTRequest.swift in Sources */,
@@ -491,6 +530,7 @@
 				AAB6487E25C7A4340057DBB8 /* CharactersNetworkManager.swift in Sources */,
 				AAB6485D25C781340057DBB8 /* ComicSummaryModel.swift in Sources */,
 				AAB648B725C833990057DBB8 /* CoreDataManager.swift in Sources */,
+				AAB6490025C8EED40057DBB8 /* DetailsRouter.swift in Sources */,
 				AAB648B325C7DB700057DBB8 /* AlertView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

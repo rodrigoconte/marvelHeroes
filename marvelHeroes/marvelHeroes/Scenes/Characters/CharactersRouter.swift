@@ -28,12 +28,12 @@ class CharactersRouter: NSObject, CharactersRoutingLogic, CharactersDataPassing 
     // MARK: Routing
     
     func routeToDetail() {
-//        let destinationVC = DetailFactory.makeController()
-//        guard var destinationDS = destinationVC.router?.dataStore else { return }
-//        guard let indexPath = viewController?.tableView.indexPathForSelectedRow else { return }
-//        destinationDS.character = dataStore?.charactersBeingDisplayed[indexPath.row]
-//        
-//        viewController?.navigationController?.pushViewController(destinationVC, animated: true)
+        let destinationVC = DetailsFactory.setupController()
+        guard var destinationDS = destinationVC.router?.dataStore else { return }
+        guard let indexPath = viewController?.tableView.indexPathForSelectedRow else { return }
+        destinationDS.character = dataStore?.charactersBeingDisplayed[indexPath.row]
+
+        viewController?.navigationController?.pushViewController(destinationVC, animated: true)
     }
     
 }
