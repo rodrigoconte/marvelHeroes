@@ -59,13 +59,13 @@ class LoadingView: UIView {
     }
     
     private func addActivityView() {
-        let activity = NVActivityIndicatorView(frame: frame, type: .lineScale, color: .black)
+        let activity = NVActivityIndicatorView(frame: frame, type: .ballTrianglePath, color: .black)
         activity.startAnimating()
         addSubview(activity)
         
         activity.translatesAutoresizingMaskIntoConstraints = false
         activity.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        activity.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        activity.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -100).isActive = true
         activity.heightAnchor.constraint(equalToConstant: 50).isActive = true
         activity.widthAnchor.constraint(equalToConstant: 50).isActive = true
     }
