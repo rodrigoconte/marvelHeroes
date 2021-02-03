@@ -46,7 +46,7 @@ enum Favorites {
             case .database:
                 return ErrorConstants.database
             case .emptyList:
-                return "Não há nenhum personagem na lista de favoritos"
+                return "Não há nenhum personagem\n na lista de favoritos"
             }
         }
     }

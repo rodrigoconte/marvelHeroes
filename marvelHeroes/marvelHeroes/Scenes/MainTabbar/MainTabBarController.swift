@@ -40,7 +40,7 @@ class MainTabBarController: UITabBarController {
     //MARK: Private Functions
     
     private func setup() {
-        tabBar.tintColor = .red
+        tabBar.tintColor = .black
         viewControllers = [charactersNavigationController, favoritesNavigationController]
     }
     
