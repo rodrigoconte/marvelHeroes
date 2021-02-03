@@ -32,6 +32,7 @@ class AlertView: UIView {
     lazy private var messageLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
+        label.textAlignment = .center
         return label
     }()
     

@@ -69,6 +69,7 @@ class FavoritesViewController: UITableViewController {
     private func requestFavorites() {
         tableView.backgroundView = nil
         interactor?.requestFavorites()
+        tableView.reloadData()
     }
     
     private func setupTableView() {

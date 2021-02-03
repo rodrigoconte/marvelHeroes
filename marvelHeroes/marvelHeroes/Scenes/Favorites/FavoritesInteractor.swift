@@ -66,11 +66,12 @@ class FavoritesInteractor: FavoritesBusinessLogic, FavoritesDataStore {
     
     private func handleFavoritesSuccess(favorites: [FavoriteEntity]) {
         self.favorites = favorites
+        
+        let response = Favorites.GetFavorites.Response(favorites: favorites)
+        presenter?.presentFavorites(response: response)
+        
         if favorites.isEmpty {
             presenter?.presentError(.emptyList)
-        } else {
-            let response = Favorites.GetFavorites.Response(favorites: favorites)
-            presenter?.presentFavorites(response: response)
         }
     }
 }

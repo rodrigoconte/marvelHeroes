@@ -36,7 +36,13 @@ extension CharactersAPI: RESTRequest {
         let hashString = MD5.generateMD5Hash(from: timestamp + privateKey + publicKey)
         let hashQueryItem = URLQueryItem(name: "hash", value: hashString)
         
-        return [timestampQueryItem, apiKeyQueryItem, hashQueryItem]
+        let limit = "80"
+        let limitQueryItem = URLQueryItem(name: "limit", value: limit)
+        
+        let offSet = "0"
+        let offSetQueryItem = URLQueryItem(name: "offset", value: offSet)
+        
+        return [timestampQueryItem, apiKeyQueryItem, hashQueryItem, limitQueryItem, offSetQueryItem]
     }
     
     var httpMethod: HTTPMethod {
